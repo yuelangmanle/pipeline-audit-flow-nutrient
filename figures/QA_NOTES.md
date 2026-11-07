@@ -2,8 +2,7 @@
 
 Figure sources: make_manuscript_figs.py + figstyle.py (run with PAPER_BASE
 set; exports land under this package's figures/ directory, as PDF/EPS/TIFF/PNG;
-TIFFs are flattened to RGB with their 600 dpi resolution tags). The seven collision-audit JSONs in this folder are frozen machine records of the delivered renders; the auditing tool itself is not redistributed, and make_manuscript_figs.py re-reads these verdicts when it rebuilds QA_DISPOSITIONS.json. The seven collision-audit JSONs in this folder
-are the machine audits of the exported PDFs.
+TIFFs are flattened to RGB with their 600 dpi resolution tags). The seven collision-audit JSONs in this folder are frozen machine audits of the exported PDFs; the auditing tool itself is not redistributed, and make_manuscript_figs.py re-reads these verdicts when it rebuilds QA_DISPOSITIONS.json.
 
 Re-rendering overwrites the alignment and collision-audit JSONs next to
 the exports; the JSONs shipped here are those of the final render, and the

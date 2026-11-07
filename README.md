@@ -1,8 +1,9 @@
 # Reproducibility package
 
 Code and result tables for the manuscript "Pipeline choices manufacture
-nominally significant directional claims in river discharge-nutrient
-monitoring data" (reproducibility package for the manuscript).
+nominally significant directional claims in river discharge–nutrient
+monitoring data — an audit with a six-item reporting checklist"
+(reproducibility package for the manuscript).
 
 ## What runs from this package
 
@@ -47,9 +48,10 @@ v2 file being the gate the corrected pipeline uses). They are deterministic
 derivatives of the public archives, shipped so the sample construction is
 inspectable without re-deriving it.
 
-Those raw inputs are not redistributed here; every shipped table
-is the frozen output of the scripts, so the tables themselves are verifiable
-without downloading anything.
+Those raw inputs are not redistributed here; 50 of the 60 shipped tables are
+the frozen outputs of the current scripts in `code/` and 10 are frozen baseline
+or superseded records (all explicitly labeled in the producer map below), so
+every table is verifiable without downloading anything.
 
 ## Layout
 
@@ -116,7 +118,7 @@ without downloading anything.
    the affected months are listed in
    `data/results/tables/rotation_seam_audit.csv`). One helper, `pipeline.rotated_support`, is shared by
    the TE and CCM null scripts; the two naive-layer tables rotate packed rows in
-   the naive frame, which carries no gap bookkeeping of its own). Where the
+   the naive frame, which carries no gap bookkeeping of its own. Where the
    complete-year count divides k the rotation is an exact identity and the
    draw reproduces the observation; `code/selfcheck.py` verifies that
    identity on the shipped tables, table row by table row. Earlier builds

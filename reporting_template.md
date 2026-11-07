@@ -1,15 +1,15 @@
 # Reporting template — directional claims from seasonal monitoring records
 
-Filled example rows use the values from this package (Poyang and Taihu).
-Copy the table, replace the bracketed entries with your own.
+Filled example columns use the values from this package across all three audited systems: global rivers (`Q↔C`, $n = 316$), river-connected Poyang Lake (`WL→TN`, $n = 84$), and weakly flushed Lake Taihu (`TP→Chla`, $n = 367$).
+Copy the table and replace the example columns with your own study's values.
 
-| Item | What to report | This package's example (Poyang WL→TN) | This package's example (Taihu TP→Chla) |
-|---|---|---|---|
-| 1. Variable definition | Species codes used; total-only rerun result | TP/TOTP total-only; mixed-code share reported separately (Section 3.3) | TN/TP/Chla as measured, no composite codes |
-| 2. Calendar construction | Gap-length distribution; count of gap-free embedding windows | 84 complete-year months; no interpolated months in the strict layer | 367–370 complete-year months by pair |
-| 3. Estimator calibration | MI on independent Gaussian data (nats); k; distance norm | corrected KSG: +0.006 nats (k = 3, max-norm) | same estimator |
-| 4. Seasonal null | Test the directional claim against surrogates that preserve seasonal structure; report the surrogate family and draw count | year-block permutation over whole-year blocks (seasonal structure preserved by construction) | same design; 1,000 draws × 3 seeds (42/43/44) |
-| 5. Null design & floor | Number of distinct surrogate alignments; the (b+1)/(N+1) floor stated with the p value | 5,040 exact orders incl. identity → floor 2/5,041 ≈ 0.0004 | floor 1/1,001 ≈ 0.001 (11-shift layers: 1/12) |
-| 6. Power | Detectable deviation at your power standard; clustered? | 80% power for shares ≥ 58% (n = 316, unclustered) | — |
+| Item | What to report | Example 1: Global rivers `Q↔C` ($n = 316$) | Example 2: Poyang Lake `WL→TN` ($n = 84$) | Example 3: Lake Taihu `TP→Chla` ($n = 367$) |
+|---|---|---|---|---|
+| 1. Variable definition | Exact parameter codes; total-only rerun result | `TN`/`TOTN` ($n = 62$) and `TP`/`TOTP` ($n = 254$) total-only; mixed-code share reported separately (60.1% $\to$ 47.1%, Section 3.3) | Measured lake-wide `TN` paired with water level (`WL`); 7 sentinel-corrupted negative `TP` months removed in `WL–TP` | Measured lake-wide `TN`, `TP`, and `Chla`; no composite fractional codes |
+| 2. Calendar construction | Gap-length distribution; count of gap-free embedding windows | Continuous monthly grid; $\le 2$-month linear bridge (18% of months); mean 115.5 gap-free windows (median 72.5); strict uninterpolated check ($n = 247$ CCM, $n = 268$ TE) | 84 complete-year months across 7 full calendar years (2016–2022); zero interpolated months | 367–370 complete-year months across 31 full calendar years (1991–2022) |
+| 3. Estimator calibration | Empirical MI on independent Gaussian data ($n = 5,000$, true MI = 0); $k$; norm; scaling | Z-score standardized series; KSG-1 ($k = 3$, $L_\infty$ max-norm, strict marginal counting): $+0.006$ nats at true MI = 0 (unstandardized TE returns 241/316 zeros) | Deseasonalized, z-scored simplex CCM ($E + 1$ neighbors, 70/30 split) | Deseasonalized, z-scored simplex CCM ($E + 1$ neighbors, 70/30 split) |
+| 4. Seasonal null | Surrogate family preserving seasonal phase and within-year autocorrelation | Whole-year-rotation surrogates ($K = 11$ shifts of complete-year blocks with intersected observation provenance; Section 2.2) | Exact year-block permutation across all $7! = 5,040$ complete-year orders | Year-block permutation ($N = 1,000$ draws $\times$ 3 seeds 42/43/44 across 31 complete years) |
+| 5. Null design & floor | Number of distinct surrogate alignments $K$; resolution floor $1/(K+1)$; in-draw tuning; detrended check | $K = 11$ distinct shifts $\to$ floor $p_{\min} = 1/12 \approx 0.083$; linearly detrended CCM share 51.9% | $5,040$ exact orders $\to$ floor $2/5,041 \approx 0.0004$; $E \in \{2..6\}$ re-selected per draw (argmax $p = 0.369$; detrended $p = 0.722$) | $N = 1,000$ draws $\to$ floor $1/1,001 \approx 0.001$; argmax-matched $p = 0.001$ (linear and 2009 piecewise detrended $p = 0.001$) |
+| 6. Resolution & clustering | 80%-power minimum detectable effect (MDE); station-cluster adjustment | 80% power for share deviations $\ge \pm 8.0$ points (58.0% unclustered; $\sim 59\%\text{--}60\%$ with 248-gauge cluster bootstrap, 2,000 draws) | Single-lake time series ($n = 84$ months across 4 averaged sections); BH-FDR across 14 lake directions | Single-lake time series ($n = 367$ months); BH-FDR across 14 lake directions |
 
-Verification rules: item 4's surrogates preserve the seasonal structure (year blocks move whole); item 6 uses the clustered bootstrap when stations share gauges (this package: 248 flow stations, 2,000 resamples).
+Verification rules: item 4's surrogates preserve seasonal structure by construction (complete calendar years rotate or permute as intact blocks); item 5 requires re-selecting any tuned hyperparameter ($E$, $\tau$) inside each surrogate draw; item 6 uses station-block bootstrapping or margin-preserving permutation when combinations share gauges (this package: 248 flow gauges, 2,000 bootstrap draws; 5,000 margin-preserving concordance permutations).
